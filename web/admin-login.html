@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Admin Login</h1>
+
+    <p class="welcome">Login to Admin Dashboard</p>
+
+    <input type="text" id="username" placeholder="Username">
+
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="loginAdmin()">Login</button>
+
+    <button class="back" onclick="goBack()">Back</button>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+
+function loginAdmin() {
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    if (username === "admin" && password === "2525") {
+
+        window.location.href = "admin-dashboard.html";
+
+    } else {
+
+        document.getElementById("message").innerText =
+            "Invalid username or password";
+
+    }
+}
+
+function goBack() {
+    window.location.href = "index.html";
+}
+
+</script>
+
+</body>
+</html>

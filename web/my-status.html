@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>My Repair Status</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>My Repair Status</h1>
+
+    <p class="welcome">
+        Check your repair request
+    </p>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Request ID</th>
+                    <th>Device</th>
+                    <th>Problem</th>
+                    <th>Status</th>
+                    <th>Technician</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="statusTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <button
+        onclick="window.location.href='customer-dashboard.html'">
+
+        Back to Dashboard
+
+    </button>
+
+</div>
+
+
+<script>
+
+let customerName =
+    localStorage.getItem("customerName");
+
+
+fetch("/api/repairs")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        let table =
+            document.getElementById("statusTable");
+
+
+        let customerRepairs =
+            data.filter(repair =>
+                repair.customer === customerName
+            );
+
+
+        customerRepairs.forEach(repair => {
+
+            let row =
+                document.createElement("tr");
+
+
+            row.innerHTML =
+
+                "<td>" +
+                repair.id +
+                "</td>" +
+
+                "<td>" +
+                repair.device +
+                "</td>" +
+
+                "<td>" +
+                repair.problem +
+                "</td>" +
+
+                "<td>" +
+                repair.status +
+                "</td>" +
+
+                "<td>" +
+                repair.technician +
+                "</td>";
+
+
+            table.appendChild(row);
+
+        });
+
+
+        if (customerRepairs.length === 0) {
+
+            let row =
+                document.createElement("tr");
+
+
+            row.innerHTML =
+                "<td colspan='5'>" +
+                "No repair requests found." +
+                "</td>";
+
+
+            table.appendChild(row);
+
+        }
+
+    })
+
+
+    .catch(error => {
+
+        console.log(
+            "Error loading repair status:",
+            error
+        );
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

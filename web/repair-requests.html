@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Repair Requests</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Repair Requests</h1>
+
+    <p class="welcome">
+        Customer Repair Requests
+    </p>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Request ID</th>
+                    <th>Customer</th>
+                    <th>Device</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Problem</th>
+                    <th>Status</th>
+                    <th>Technician</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="repairTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <button
+        onclick="window.location.href='admin-dashboard.html'">
+
+        Back to Dashboard
+
+    </button>
+
+</div>
+
+
+<script>
+
+fetch("/api/repairs")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        let table =
+            document.getElementById("repairTable");
+
+
+        data.forEach(repair => {
+
+            let row =
+                document.createElement("tr");
+
+
+            row.innerHTML =
+
+                "<td>" +
+                repair.id +
+                "</td>" +
+
+                "<td>" +
+                repair.customer +
+                "</td>" +
+
+                "<td>" +
+                repair.device +
+                "</td>" +
+
+                "<td>" +
+                repair.brand +
+                "</td>" +
+
+                "<td>" +
+                repair.model +
+                "</td>" +
+
+                "<td>" +
+                repair.problem +
+                "</td>" +
+
+                "<td>" +
+                repair.status +
+                "</td>" +
+
+                "<td>" +
+                repair.technician +
+                "</td>";
+
+
+            table.appendChild(row);
+
+        });
+
+    })
+
+
+    .catch(error => {
+
+        console.log(
+            "Error loading repair requests:",
+            error
+        );
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Technician Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Technician Login</h1>
+
+    <p class="welcome">
+        Login to your technician account
+    </p>
+
+    <input type="text"
+           id="username"
+           placeholder="Username">
+
+    <input type="password"
+           id="password"
+           placeholder="Password">
+
+    <button onclick="loginTechnician()">
+        Login
+    </button>
+
+    <button class="back"
+            onclick="window.location.href='index.html'">
+        Back
+    </button>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+
+function loginTechnician() {
+
+    let username =
+        document.getElementById("username").value;
+
+    let password =
+        document.getElementById("password").value;
+
+    if (username === "technician" &&
+        password === "2525") {
+
+        window.location.href =
+            "technician-dashboard.html";
+
+    } else {
+
+        document.getElementById("message").innerText =
+            "Invalid username or password";
+    }
+}
+
+</script>
+
+</body>
+
+</html>

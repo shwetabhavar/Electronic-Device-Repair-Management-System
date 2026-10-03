@@ -1,0 +1,569 @@
+/* ==========================================
+   GLOBAL
+   ========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    /* PROFESSIONAL PAGE BACKGROUND */
+    background: linear-gradient(
+        135deg,
+        #dbeafe 0%,
+        #eff6ff 50%,
+        #f8fafc 100%
+    );
+
+    color: #1e293b;
+}
+
+
+/* ==========================================
+   MAIN CONTAINER
+   ========================================== */
+
+.container {
+    width: 1050px;
+    max-width: 94%;
+
+    padding: 32px 40px;
+
+    /* PROFESSIONAL LIGHT BACKGROUND */
+    background: #f8fafc;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 40px rgba(15, 23, 42, 0.15);
+
+    text-align: center;
+
+    border: 1px solid #dbeafe;
+}
+
+
+/* ==========================================
+   LOGO
+   ========================================== */
+
+.logo {
+    font-size: 55px;
+    margin-bottom: 8px;
+}
+
+
+/* ==========================================
+   HEADINGS
+   ========================================== */
+
+h1 {
+    margin: 0;
+
+    font-size: 32px;
+
+    color: #0f172a;
+
+    font-weight: 700;
+}
+
+h2 {
+    margin-top: 8px;
+
+    font-size: 22px;
+
+    color: #1e40af;
+}
+
+
+/* ==========================================
+   WELCOME TEXT
+   ========================================== */
+
+.welcome {
+    margin: 14px 0 24px;
+
+    color: #64748b;
+
+    font-size: 16px;
+}
+
+
+/* ==========================================
+   BUTTON
+   ========================================== */
+
+button {
+    width: 100%;
+
+    padding: 13px 16px;
+
+    margin: 8px 0;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #1e40af,
+        #2563eb
+    );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(
+        135deg,
+        #1e3a8a,
+        #1d4ed8
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(30, 64, 175, 0.25);
+}
+
+
+/* ==========================================
+   BACK BUTTON
+   ========================================== */
+
+.back {
+    background: #475569;
+}
+
+.back:hover {
+    background: #334155;
+}
+
+
+/* ==========================================
+   INPUT
+   ========================================== */
+
+input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    margin: 8px 0;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 11px;
+
+    font-size: 16px;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+input::placeholder {
+    color: #94a3b8;
+}
+
+input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ==========================================
+   LABEL
+   ========================================== */
+
+label {
+    display: block;
+
+    text-align: left;
+
+    margin-top: 12px;
+
+    margin-bottom: 5px;
+
+    font-weight: bold;
+
+    color: #334155;
+}
+
+
+/* ==========================================
+   SELECT
+   ========================================== */
+
+select {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    margin-bottom: 8px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 11px;
+
+    font-size: 16px;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ==========================================
+   TEXTAREA
+   ========================================== */
+
+textarea {
+    width: 100%;
+
+    height: 110px;
+
+    padding: 13px 15px;
+
+    margin: 8px 0;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 11px;
+
+    font-size: 16px;
+
+    font-family: Arial, sans-serif;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
+    resize: vertical;
+
+    outline: none;
+}
+
+textarea::placeholder {
+    color: #94a3b8;
+}
+
+textarea:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ==========================================
+   MESSAGE
+   ========================================== */
+
+#message {
+    margin-top: 14px;
+
+    color: #15803d;
+
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   DASHBOARD GRID
+   ========================================== */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin: 22px 0;
+}
+
+
+/* ==========================================
+   DASHBOARD CARD
+   ========================================== */
+
+.dashboard-card {
+    background: linear-gradient(
+        135deg,
+        #dbeafe,
+        #eff6ff
+    );
+
+    padding: 18px 10px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    border: 1px solid #bfdbfe;
+
+    transition: 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(30, 64, 175, 0.12);
+}
+
+
+/* ==========================================
+   CARD HEADING
+   ========================================== */
+
+.dashboard-card h3 {
+    margin: 0 0 6px 0;
+
+    font-size: 14px;
+
+    color: #475569;
+}
+
+
+/* ==========================================
+   CARD NUMBER
+   ========================================== */
+
+.dashboard-card p {
+    margin: 0;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #1e40af;
+}
+
+
+/* ==========================================
+   TABLE CONTAINER
+   ========================================== */
+
+.table-container {
+    width: 100%;
+
+    overflow-x: auto;
+
+    margin-top: 18px;
+
+    margin-bottom: 18px;
+}
+
+
+/* ==========================================
+   TABLE HEADING
+   ========================================== */
+
+.table-container h2 {
+    color: #0f172a;
+
+    margin: 0 0 14px;
+
+    font-size: 22px;
+}
+
+
+/* ==========================================
+   TABLE
+   ========================================== */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    border: 1px solid #dbeafe;
+}
+
+
+/* ==========================================
+   TABLE CELLS
+   ========================================== */
+
+th,
+td {
+    padding: 11px 7px;
+
+    text-align: center;
+
+    word-break: break-word;
+
+    overflow-wrap: anywhere;
+
+    font-size: 14px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    font-weight: bold;
+
+    color: #ffffff;
+
+    background: #1e40af;
+}
+
+td {
+    color: #334155;
+
+    background: #ffffff;
+}
+
+tr:hover td {
+    background: #eff6ff;
+}
+
+
+/* ==========================================
+   STATUS
+   ========================================== */
+
+td:nth-child(4) {
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 800px) {
+
+    .container {
+        width: 95%;
+
+        max-width: 95%;
+
+        padding: 25px 18px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+    .dashboard-card {
+        padding: 15px 8px;
+    }
+
+    .dashboard-card h3 {
+        font-size: 13px;
+    }
+
+    .dashboard-card p {
+        font-size: 24px;
+    }
+
+    table {
+        min-width: 650px;
+    }
+
+    th,
+    td {
+        padding: 8px 5px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* ==========================================
+   SMALL MOBILE
+   ========================================== */
+
+@media (max-width: 500px) {
+
+    body {
+        align-items: flex-start;
+
+        padding: 15px 0;
+    }
+
+    .container {
+        width: 95%;
+
+        max-width: 95%;
+
+        padding: 22px 14px;
+
+        border-radius: 18px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+
+    .welcome {
+        font-size: 14px;
+
+        margin: 12px 0 20px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    button {
+        font-size: 15px;
+    }
+}

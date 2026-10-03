@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Customer Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Customer Dashboard</h1>
+
+    <p class="welcome">
+        Electronic Device Repair Management System
+    </p>
+
+
+    <!-- DASHBOARD CARDS -->
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+
+            <h3>My Repairs</h3>
+
+            <p id="totalRepairs">0</p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>Pending</h3>
+
+            <p id="pendingRepairs">0</p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>In Progress</h3>
+
+            <p id="progressRepairs">0</p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>Completed</h3>
+
+            <p id="completedRepairs">0</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- MY RECENT REPAIRS -->
+
+    <div class="table-container">
+
+        <h2>My Recent Repairs</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Request ID</th>
+
+                    <th>Device</th>
+
+                    <th>Problem</th>
+
+                    <th>Status</th>
+
+                    <th>Technician</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="myRepairs">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- CUSTOMER OPTIONS -->
+
+    <button
+        onclick="window.location.href='repair-request.html'">
+
+        New Repair Request
+
+    </button>
+
+
+    <button
+        onclick="window.location.href='my-status.html'">
+
+        My Repair Status
+
+    </button>
+
+
+    <button
+        class="back"
+        onclick="window.location.href='index.html'">
+
+        Logout
+
+    </button>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   GET CUSTOMER NAME
+   ========================================== */
+
+let customerName =
+    localStorage.getItem("customerName");
+
+
+/* ==========================================
+   LOAD REPAIRS
+   ========================================== */
+
+fetch("/api/repairs")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+
+        /* ONLY CURRENT CUSTOMER */
+
+        let customerRepairs =
+            data.filter(repair =>
+                repair.customer === customerName
+            );
+
+
+        /* ==========================================
+           TOTAL
+           ========================================== */
+
+        document.getElementById(
+            "totalRepairs"
+        ).innerText =
+            customerRepairs.length;
+
+
+        let pending = 0;
+
+        let progress = 0;
+
+        let completed = 0;
+
+
+        /* ==========================================
+           COUNT STATUS
+           ========================================== */
+
+        customerRepairs.forEach(repair => {
+
+
+            if (repair.status === "Pending") {
+
+                pending++;
+
+            }
+
+
+            if (repair.status === "In Progress") {
+
+                progress++;
+
+            }
+
+
+            if (repair.status === "Completed") {
+
+                completed++;
+
+            }
+
+        });
+
+
+        document.getElementById(
+            "pendingRepairs"
+        ).innerText =
+            pending;
+
+
+        document.getElementById(
+            "progressRepairs"
+        ).innerText =
+            progress;
+
+
+        document.getElementById(
+            "completedRepairs"
+        ).innerText =
+            completed;
+
+
+        /* ==========================================
+           RECENT REPAIRS TABLE
+           ========================================== */
+
+        let table =
+            document.getElementById(
+                "myRepairs"
+            );
+
+
+        customerRepairs
+            .slice(-5)
+            .reverse()
+            .forEach(repair => {
+
+
+                let row =
+                    document.createElement("tr");
+
+
+                row.innerHTML =
+
+                    "<td>" +
+                    repair.id +
+                    "</td>" +
+
+                    "<td>" +
+                    repair.device +
+                    "</td>" +
+
+                    "<td>" +
+                    repair.problem +
+                    "</td>" +
+
+                    "<td>" +
+                    repair.status +
+                    "</td>" +
+
+                    "<td>" +
+                    repair.technician +
+                    "</td>";
+
+
+                table.appendChild(row);
+
+            });
+
+
+        /* ==========================================
+           NO REPAIRS
+           ========================================== */
+
+        if (customerRepairs.length === 0) {
+
+            let row =
+                document.createElement("tr");
+
+
+            row.innerHTML =
+                "<td colspan='5'>" +
+                "No repair requests found." +
+                "</td>";
+
+
+            table.appendChild(row);
+
+        }
+
+    })
+
+
+    .catch(error => {
+
+        console.log(
+            "Error loading customer dashboard:",
+            error
+        );
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

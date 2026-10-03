@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>New Repair Request</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>New Repair Request</h1>
+
+    <p class="welcome">
+        Enter your device details
+    </p>
+
+
+    <!-- DEVICE -->
+
+    <input
+        type="text"
+        id="device"
+        placeholder="Device Type">
+
+
+    <!-- BRAND -->
+
+    <input
+        type="text"
+        id="brand"
+        placeholder="Brand">
+
+
+    <!-- MODEL -->
+
+    <input
+        type="text"
+        id="model"
+        placeholder="Model">
+
+
+    <!-- PROBLEM -->
+
+    <textarea
+        id="problem"
+        placeholder="Describe the problem"></textarea>
+
+
+    <!-- SUBMIT -->
+
+    <button onclick="submitRequest()">
+
+        Submit Repair Request
+
+    </button>
+
+
+    <!-- BACK -->
+
+    <button
+        class="back"
+        onclick="window.location.href='customer-dashboard.html'">
+
+        Back to Dashboard
+
+    </button>
+
+
+    <!-- MESSAGE -->
+
+    <p id="message"></p>
+
+</div>
+
+
+<script>
+
+
+/* ==========================================
+   SUBMIT REPAIR REQUEST
+   ========================================== */
+
+function submitRequest() {
+
+
+    /* ==========================================
+       GET CUSTOMER NAME FROM LOGIN
+       ========================================== */
+
+    let customerName =
+        localStorage.getItem("customerName");
+
+
+    /* ==========================================
+       GET FORM VALUES
+       ========================================== */
+
+    let device =
+        document.getElementById("device").value.trim();
+
+
+    let brand =
+        document.getElementById("brand").value.trim();
+
+
+    let model =
+        document.getElementById("model").value.trim();
+
+
+    let problem =
+        document.getElementById("problem").value.trim();
+
+
+    /* ==========================================
+       CHECK CUSTOMER LOGIN
+       ========================================== */
+
+    if (customerName === null || customerName === "") {
+
+        document.getElementById("message").innerText =
+            "Please login as a customer first.";
+
+        return;
+
+    }
+
+
+    /* ==========================================
+       CHECK EMPTY FIELDS
+       ========================================== */
+
+    if (
+        device === "" ||
+        brand === "" ||
+        model === "" ||
+        problem === ""
+    ) {
+
+        document.getElementById("message").innerText =
+            "Please fill all fields.";
+
+        return;
+
+    }
+
+
+    /* ==========================================
+       PREPARE DATA
+       ========================================== */
+
+    let formData =
+
+        "customer=" +
+        encodeURIComponent(customerName) +
+
+        "&device=" +
+        encodeURIComponent(device) +
+
+        "&brand=" +
+        encodeURIComponent(brand) +
+
+        "&model=" +
+        encodeURIComponent(model) +
+
+        "&problem=" +
+        encodeURIComponent(problem);
+
+
+    /* ==========================================
+       SEND DATA TO JAVA SERVER
+       ========================================== */
+
+    fetch("/api/repairs/create", {
+
+        method: "POST",
+
+        headers: {
+
+            "Content-Type":
+                "application/x-www-form-urlencoded"
+
+        },
+
+        body: formData
+
+    })
+
+
+    /* ==========================================
+       SERVER RESPONSE
+       ========================================== */
+
+    .then(response => response.text())
+
+
+    .then(message => {
+
+
+        document.getElementById("message").innerText =
+            message;
+
+
+        /* ==========================================
+           CLEAR FORM
+           ========================================== */
+
+        document.getElementById("device").value = "";
+
+        document.getElementById("brand").value = "";
+
+        document.getElementById("model").value = "";
+
+        document.getElementById("problem").value = "";
+
+
+    })
+
+
+    /* ==========================================
+       ERROR
+       ========================================== */
+
+    .catch(error => {
+
+        document.getElementById("message").innerText =
+            "Error submitting repair request.";
+
+        console.log(error);
+
+    });
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

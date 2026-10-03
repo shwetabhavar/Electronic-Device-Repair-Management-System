@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Technician Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Technician Dashboard</h1>
+
+    <p class="welcome">
+        Electronic Device Repair Management System
+    </p>
+
+
+    <!-- DASHBOARD CARDS -->
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+
+            <h3>Assigned Repairs</h3>
+
+            <p id="totalRepairs">0</p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>Assigned</h3>
+
+            <p id="assignedRepairs">0</p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>In Progress</h3>
+
+            <p id="progressRepairs">0</p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>Completed</h3>
+
+            <p id="completedRepairs">0</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- TECHNICIAN OPTIONS -->
+
+    <button
+        onclick="window.location.href='assigned-repairs.html'">
+
+        View Assigned Repairs
+
+    </button>
+
+
+    <button
+        onclick="window.location.href='update-repair.html'">
+
+        Update Repair Status
+
+    </button>
+
+
+    <button
+        class="back"
+        onclick="window.location.href='index.html'">
+
+        Logout
+
+    </button>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   LOAD ASSIGNED REPAIRS
+   ========================================== */
+
+fetch("/api/repairs/assigned")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+
+        /* TOTAL ASSIGNED */
+
+        document.getElementById(
+            "totalRepairs"
+        ).innerText =
+            data.length;
+
+
+        let assigned = 0;
+
+        let progress = 0;
+
+        let completed = 0;
+
+
+        data.forEach(repair => {
+
+
+            if (repair.status === "Assigned") {
+
+                assigned++;
+
+            }
+
+
+            if (repair.status === "In Progress") {
+
+                progress++;
+
+            }
+
+
+            if (repair.status === "Completed") {
+
+                completed++;
+
+            }
+
+        });
+
+
+        /* ASSIGNED */
+
+        document.getElementById(
+            "assignedRepairs"
+        ).innerText =
+            assigned;
+
+
+        /* IN PROGRESS */
+
+        document.getElementById(
+            "progressRepairs"
+        ).innerText =
+            progress;
+
+
+        /* COMPLETED */
+
+        document.getElementById(
+            "completedRepairs"
+        ).innerText =
+            completed;
+
+    })
+
+
+    .catch(error => {
+
+        console.log(
+            "Error loading technician dashboard:",
+            error
+        );
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Update Repair Status</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Update Repair Status</h1>
+
+    <p class="welcome">
+        Update the current repair status
+    </p>
+
+
+    <label>Repair Request</label>
+
+    <select id="repair">
+
+        <option value="">
+            Loading repair requests...
+        </option>
+
+    </select>
+
+
+    <label>Repair Status</label>
+
+    <select id="status">
+
+        <option value="Assigned">
+            Assigned
+        </option>
+
+        <option value="In Progress">
+            In Progress
+        </option>
+
+        <option value="Ready">
+            Ready
+        </option>
+
+        <option value="Completed">
+            Completed
+        </option>
+
+    </select>
+
+
+    <button onclick="updateStatus()">
+
+        Update Status
+
+    </button>
+
+
+    <p id="message"></p>
+
+
+    <button
+        class="back"
+        onclick="window.location.href='technician-dashboard.html'">
+
+        Back to Dashboard
+
+    </button>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   LOAD REPAIR REQUESTS
+   ========================================== */
+
+fetch("/api/repairs/assigned")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        let repairSelect =
+            document.getElementById("repair");
+
+        repairSelect.innerHTML = "";
+
+
+        data.forEach(repair => {
+
+            let option =
+                document.createElement("option");
+
+            option.value = repair.id;
+
+            option.textContent =
+                repair.id +
+                " - " +
+                repair.customer +
+                " - " +
+                repair.device +
+                " - " +
+                repair.status;
+
+            repairSelect.appendChild(option);
+
+        });
+
+
+        if (data.length === 0) {
+
+            let option =
+                document.createElement("option");
+
+            option.textContent =
+                "No repair requests found";
+
+            repairSelect.appendChild(option);
+
+        }
+
+    })
+
+
+    .catch(error => {
+
+        console.log(
+            "Error loading repairs:",
+            error
+        );
+
+        document.getElementById("repair").innerHTML =
+            "<option>Error loading requests</option>";
+
+    });
+
+
+
+/* ==========================================
+   UPDATE REPAIR STATUS
+   ========================================== */
+
+function updateStatus() {
+
+    let repair =
+        document.getElementById("repair").value;
+
+
+    let status =
+        document.getElementById("status").value;
+
+
+    if (repair === "") {
+
+        document.getElementById("message").innerText =
+            "Please select a repair request.";
+
+        return;
+
+    }
+
+
+    let formData =
+        "repair=" +
+        encodeURIComponent(repair) +
+
+        "&status=" +
+        encodeURIComponent(status);
+
+
+    fetch("/api/repairs/status", {
+
+        method: "POST",
+
+        headers: {
+
+            "Content-Type":
+                "application/x-www-form-urlencoded"
+
+        },
+
+        body: formData
+
+    })
+
+
+    .then(response => response.text())
+
+
+    .then(message => {
+
+        document.getElementById("message").innerText =
+            message;
+
+    })
+
+
+    .catch(error => {
+
+        document.getElementById("message").innerText =
+            "Error updating repair status.";
+
+        console.log(error);
+
+    });
+
+}
+
+</script>
+
+
+</body>
+
+</html>

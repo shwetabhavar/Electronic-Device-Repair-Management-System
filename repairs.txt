@@ -1,0 +1,6 @@
+R001~Rahul~Laptop~Dell~Inspiron~Not Starting~Completed~T001
+R002~Amit~Mobile~Samsung~Galaxy~Screen Problem~Pending~Not Assigned
+R003~Customer~Laptop~Hp~15s~Battery not charging~Pending~Not Assigned
+R004~customer~Laptop~Hp~15s~keyboard~Pending~Not Assigned
+R005~customer~Laptop~Hp~15s~keyboard~Pending~Not Assigned
+R006~customer~Laptop~Hp~15s~keyboard~Pending~Not Assigned

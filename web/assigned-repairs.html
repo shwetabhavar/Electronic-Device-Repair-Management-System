@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Assigned Repairs</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Assigned Repairs</h1>
+
+    <p class="welcome">
+        Repairs assigned to you
+    </p>
+
+
+    <!-- Table Container -->
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Request ID</th>
+                    <th>Customer</th>
+                    <th>Device</th>
+                    <th>Problem</th>
+                    <th>Status</th>
+                    <th>Technician</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="repairTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <button
+        onclick="window.location.href='technician-dashboard.html'">
+
+        Back to Dashboard
+
+    </button>
+
+</div>
+
+
+<script>
+
+fetch("/api/repairs/assigned")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        let table =
+            document.getElementById("repairTable");
+
+
+        data.forEach(repair => {
+
+            let row =
+                document.createElement("tr");
+
+
+            row.innerHTML =
+
+                "<td>" +
+                repair.id +
+                "</td>" +
+
+                "<td>" +
+                repair.customer +
+                "</td>" +
+
+                "<td>" +
+                repair.device +
+                "</td>" +
+
+                "<td>" +
+                repair.problem +
+                "</td>" +
+
+                "<td>" +
+                repair.status +
+                "</td>" +
+
+                "<td>" +
+                repair.technician +
+                "</td>";
+
+
+            table.appendChild(row);
+
+        });
+
+    })
+
+
+    .catch(error => {
+
+        console.log(
+            "Error loading assigned repairs:",
+            error
+        );
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

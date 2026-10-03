@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Electronic Device Repair Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ==============================
+           CENTER LOGO
+           ============================== */
+
+        .repair-logo {
+            width: 90px;
+            height: 90px;
+
+            margin: 0 auto 20px auto;
+
+            border-radius: 50%;
+
+            background-color: #2563eb;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+
+            font-size: 45px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 8px 20px rgba(37, 99, 235, 0.30);
+        }
+
+        .project-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .project-subtitle {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- LOGO -->
+
+    <div class="repair-logo">
+        E
+    </div>
+
+
+    <!-- PROJECT NAME -->
+
+    <div class="project-name">
+        Electronic Device
+    </div>
+
+    <div class="project-subtitle">
+        Repair Management System
+    </div>
+
+
+    <p class="welcome">
+        Login to continue
+    </p>
+
+
+    <!-- ROLE -->
+
+    <label>
+        Select Role
+    </label>
+
+
+    <select id="role">
+
+        <option value="">
+            Select Role
+        </option>
+
+        <option value="admin">
+            Admin
+        </option>
+
+        <option value="customer">
+            Customer
+        </option>
+
+        <option value="technician">
+            Technician
+        </option>
+
+    </select>
+
+
+    <!-- USERNAME -->
+
+    <input
+        type="text"
+        id="username"
+        placeholder="Username"
+    >
+
+
+    <!-- PASSWORD -->
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Password"
+    >
+
+
+    <!-- LOGIN -->
+
+    <button onclick="login()">
+
+        Login
+
+    </button>
+
+
+    <p id="message"></p>
+
+
+</div>
+
+
+<script>
+
+
+function login() {
+
+
+    let role =
+        document.getElementById("role").value;
+
+
+    let username =
+        document
+        .getElementById("username")
+        .value
+        .trim();
+
+
+    let password =
+        document
+        .getElementById("password")
+        .value
+        .trim();
+
+
+    /* ==============================
+       VALIDATION
+       ============================== */
+
+
+    if (role === "") {
+
+        document.getElementById("message").innerText =
+            "Please select a role.";
+
+        return;
+    }
+
+
+    if (username === "" || password === "") {
+
+        document.getElementById("message").innerText =
+            "Please enter username and password.";
+
+        return;
+    }
+
+
+    /* ==============================
+       ADMIN
+       ============================== */
+
+
+    if (role === "admin") {
+
+
+        if (
+            username === "admin" &&
+            password === "2525"
+        ) {
+
+
+            window.location.href =
+                "admin-dashboard.html";
+
+
+        } else {
+
+
+            document.getElementById("message").innerText =
+                "Invalid Admin login.";
+
+
+        }
+
+
+        return;
+    }
+
+
+    /* ==============================
+       CUSTOMER
+       ============================== */
+
+
+    if (role === "customer") {
+
+
+        if (
+            username === "customer" &&
+            password === "2525"
+        ) {
+
+
+            localStorage.setItem(
+                "customerName",
+                username
+            );
+
+
+            window.location.href =
+                "customer-dashboard.html";
+
+
+        } else {
+
+
+            document.getElementById("message").innerText =
+                "Invalid Customer login.";
+
+
+        }
+
+
+        return;
+    }
+
+
+    /* ==============================
+       TECHNICIAN
+       ============================== */
+
+
+    if (role === "technician") {
+
+
+        if (
+            username === "technician" &&
+            password === "2525"
+        ) {
+
+
+            window.location.href =
+                "technician-dashboard.html";
+
+
+        } else {
+
+
+            document.getElementById("message").innerText =
+                "Invalid Technician login.";
+
+
+        }
+
+
+        return;
+    }
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

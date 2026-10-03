@@ -1,0 +1,452 @@
+/* ========================================== 
+   GLOBAL 
+   ========================================== */ 
+ 
+* { 
+    box-sizing: border-box; 
+} 
+ 
+ 
+/* ========================================== 
+   BODY 
+   ========================================== */ 
+ 
+body { 
+    margin: 0; 
+    min-height: 100vh; 
+ 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+ 
+    font-family: Arial, sans-serif; 
+ 
+    background: linear-gradient( 
+        135deg, 
+        #e3f2fd, 
+        #f5f7fa 
+    ); 
+} 
+ 
+ 
+/* ========================================== 
+   MAIN CONTAINER 
+   ========================================== */ 
+ 
+.container { 
+    width: 1050px; 
+ 
+    max-width: 96%; 
+ 
+    padding: 35px 45px; 
+ 
+    text-align: center; 
+ 
+    background: white; 
+ 
+    border-radius: 20px; 
+ 
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.15); 
+} 
+ 
+ 
+/* ========================================== 
+   LOGO 
+   ========================================== */ 
+ 
+.logo { 
+    font-size: 55px; 
+ 
+    margin-bottom: 10px; 
+} 
+ 
+ 
+/* ========================================== 
+   HEADINGS 
+   ========================================== */ 
+ 
+h1 { 
+    margin: 0; 
+ 
+    font-size: 30px; 
+ 
+    color: #1e293b; 
+} 
+ 
+ 
+h2 { 
+    margin-top: 8px; 
+ 
+    font-size: 22px; 
+ 
+    color: #2563eb; 
+} 
+ 
+ 
+/* ========================================== 
+   WELCOME TEXT 
+   ========================================== */ 
+ 
+.welcome { 
+    margin: 20px 0; 
+ 
+    color: #64748b; 
+ 
+    font-size: 16px; 
+} 
+ 
+ 
+/* ========================================== 
+   BUTTON 
+   ========================================== */ 
+ 
+button { 
+    width: 100%; 
+ 
+    padding: 14px; 
+ 
+    margin: 10px 0; 
+ 
+    border: none; 
+ 
+    border-radius: 10px; 
+ 
+    background-color: #2563eb; 
+ 
+    color: white; 
+ 
+    font-size: 16px; 
+ 
+    font-weight: bold; 
+ 
+    cursor: pointer; 
+ 
+    transition: 0.2s; 
+} 
+ 
+ 
+button:hover { 
+    background-color: #1d4ed8; 
+ 
+    transform: translateY(-2px); 
+} 
+ 
+ 
+/* ========================================== 
+   INPUT 
+   ========================================== */ 
+ 
+input { 
+    width: 100%; 
+ 
+    padding: 14px; 
+ 
+    margin: 10px 0; 
+ 
+    border: 1px solid #ccc; 
+ 
+    border-radius: 10px; 
+ 
+    font-size: 16px; 
+} 
+ 
+ 
+/* ========================================== 
+   BACK BUTTON 
+   ========================================== */ 
+ 
+.back { 
+    background-color: #64748b; 
+} 
+ 
+ 
+.back:hover { 
+    background-color: #475569; 
+} 
+ 
+ 
+/* ========================================== 
+   LABEL 
+   ========================================== */ 
+ 
+label { 
+    display: block; 
+ 
+    text-align: left; 
+ 
+    margin-top: 15px; 
+ 
+    margin-bottom: 5px; 
+ 
+    font-weight: bold; 
+ 
+    color: #1e293b; 
+} 
+ 
+ 
+/* ========================================== 
+   SELECT 
+   ========================================== */ 
+ 
+select { 
+    width: 100%; 
+ 
+    padding: 14px; 
+ 
+    margin-bottom: 10px; 
+ 
+    border: 1px solid #ccc; 
+ 
+    border-radius: 10px; 
+ 
+    font-size: 16px; 
+ 
+    background: white; 
+} 
+ 
+ 
+/* ========================================== 
+   MESSAGE 
+   ========================================== */ 
+ 
+#message { 
+    margin-top: 20px; 
+ 
+    color: green; 
+ 
+    font-weight: bold; 
+} 
+ 
+ 
+/* ========================================== 
+   TEXTAREA 
+   ========================================== */ 
+ 
+textarea { 
+    width: 100%; 
+ 
+    height: 120px; 
+ 
+    padding: 14px; 
+ 
+    margin: 10px 0; 
+ 
+    border: 1px solid #ccc; 
+ 
+    border-radius: 10px; 
+ 
+    font-size: 16px; 
+ 
+    font-family: Arial, sans-serif; 
+ 
+    resize: none; 
+} 
+ 
+ 
+/* ========================================== 
+   TABLE CONTAINER 
+   ========================================== */ 
+ 
+.table-container { 
+    width: 100%; 
+ 
+    overflow-x: auto; 
+ 
+    margin-top: 18px; 
+ 
+    margin-bottom: 18px; 
+} 
+ 
+ 
+/* ========================================== 
+   TABLE 
+   ========================================== */ 
+ 
+table { 
+    width: 100%; 
+ 
+    border-collapse: collapse; 
+ 
+    table-layout: fixed; 
+} 
+ 
+ 
+/* ========================================== 
+   TABLE CELLS 
+   ========================================== */ 
+ 
+th, 
+td { 
+    padding: 10px 6px; 
+ 
+    text-align: center; 
+ 
+    word-break: break-word; 
+ 
+    overflow-wrap: anywhere; 
+ 
+    font-size: 14px; 
+ 
+    border-bottom: 1px solid #e2e8f0; 
+} 
+ 
+ 
+th { 
+    font-weight: bold; 
+ 
+    color: #1e293b; 
+ 
+    background-color: #f1f5f9; 
+} 
+ 
+ 
+/* ========================================== 
+   ADMIN / CUSTOMER / TECHNICIAN DASHBOARD 
+   ========================================== */ 
+ 
+.dashboard-grid { 
+    display: grid; 
+ 
+    grid-template-columns: 
+        repeat(4, 1fr); 
+ 
+    gap: 15px; 
+ 
+    margin: 20px 0; 
+} 
+ 
+ 
+/* ========================================== 
+   DASHBOARD CARD 
+   ========================================== */ 
+ 
+.dashboard-card { 
+    background-color: #f1f5f9; 
+ 
+    padding: 16px 10px; 
+ 
+    border-radius: 12px; 
+ 
+    text-align: center; 
+} 
+ 
+ 
+/* ========================================== 
+   CARD HEADING 
+   ========================================== */ 
+ 
+.dashboard-card h3 { 
+    margin: 0 0 6px 0; 
+ 
+    font-size: 14px; 
+ 
+    color: #64748b; 
+} 
+ 
+ 
+/* ========================================== 
+   CARD NUMBER 
+   ========================================== */ 
+ 
+.dashboard-card p { 
+    margin: 0; 
+ 
+    font-size: 28px; 
+ 
+    font-weight: bold; 
+ 
+    color: #2563eb; 
+} 
+ 
+ 
+/* ========================================== 
+   DASHBOARD TABLE HEADING 
+   ========================================== */ 
+ 
+.table-container h2 { 
+    color: #1e293b; 
+ 
+    margin-bottom: 12px; 
+} 
+ 
+ 
+/* ========================================== 
+   MOBILE RESPONSIVE 
+   ========================================== */ 
+ 
+@media (max-width: 700px) { 
+ 
+    .container { 
+        width: 95%; 
+ 
+        max-width: 95%; 
+ 
+        padding: 25px 15px; 
+    } 
+ 
+ 
+    .dashboard-grid { 
+        grid-template-columns: 
+            repeat(2, 1fr); 
+ 
+        gap: 10px; 
+    } 
+ 
+ 
+    .dashboard-card { 
+        padding: 15px 8px; 
+    } 
+ 
+ 
+    .dashboard-card h3 { 
+        font-size: 13px; 
+    } 
+ 
+ 
+    .dashboard-card p { 
+        font-size: 24px; 
+    } 
+ 
+ 
+    table { 
+        min-width: 600px; 
+    } 
+ 
+ 
+    th, 
+    td { 
+        padding: 7px 4px; 
+ 
+        font-size: 12px; 
+    } 
+ 
+} 
+ 
+ 
+/* ========================================== 
+   SMALL MOBILE 
+   ========================================== */ 
+ 
+@media (max-width: 450px) { 
+ 
+    .container { 
+        padding: 20px 12px; 
+    } 
+ 
+ 
+    .dashboard-grid { 
+        grid-template-columns: 1fr; 
+    } 
+ 
+ 
+    h1 { 
+        font-size: 25px; 
+    } 
+ 
+ 
+    h2 { 
+        font-size: 19px; 
+    } 
+ 
+} 

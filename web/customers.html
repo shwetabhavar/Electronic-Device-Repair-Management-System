@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Customers</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Customers</h1>
+
+    <p class="welcome">
+        Registered Customers
+    </p>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Customer ID</th>
+                    <th>Customer Name</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="customerTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <button
+        onclick="window.location.href='admin-dashboard.html'">
+
+        Back to Dashboard
+
+    </button>
+
+</div>
+
+
+<script>
+
+fetch("/api/repairs")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        let table =
+            document.getElementById("customerTable");
+
+        let customers = [];
+
+
+        data.forEach(repair => {
+
+            if (!customers.includes(repair.customer)) {
+
+                customers.push(repair.customer);
+
+            }
+
+        });
+
+
+        customers.forEach((customer, index) => {
+
+            let row =
+                document.createElement("tr");
+
+            row.innerHTML =
+
+                "<td>C" +
+                String(index + 1).padStart(3, "0") +
+                "</td>" +
+
+                "<td>" +
+                customer +
+                "</td>";
+
+            table.appendChild(row);
+
+        });
+
+
+        if (customers.length === 0) {
+
+            let row =
+                document.createElement("tr");
+
+            row.innerHTML =
+                "<td colspan='2'>" +
+                "No customers found." +
+                "</td>";
+
+            table.appendChild(row);
+
+        }
+
+    })
+
+
+    .catch(error => {
+
+        console.log(
+            "Error loading customers:",
+            error
+        );
+
+    });
+
+</script>
+
+</body>
+
+</html>

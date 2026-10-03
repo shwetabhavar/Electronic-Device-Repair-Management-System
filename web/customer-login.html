@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Customer Login</h1>
+
+    <p class="welcome">Login to your account</p>
+
+    <input type="text" id="username" placeholder="Username">
+
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="loginCustomer()">
+        Login
+    </button>
+
+    <button class="back" onclick="window.location.href='index.html'">
+        Back
+    </button>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+
+function loginCustomer() {
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    if (username === "customer" && password === "2525") {
+        localStorage.setItem("customerName", username);
+
+        window.location.href = "customer-dashboard.html";
+
+    } else {
+
+        document.getElementById("message").innerText =
+            "Invalid username or password";
+
+    }
+}
+
+</script>
+
+</body>
+</html>
