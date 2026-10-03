@@ -197,9 +197,13 @@ public class Main {
         // CREATE SERVER
         // ==========================================
 
+        int port = Integer.parseInt(
+                System.getenv().getOrDefault("PORT", "8082")
+        );
+
         HttpServer server =
                 HttpServer.create(
-                        new InetSocketAddress(8082),
+                        new InetSocketAddress("0.0.0.0", port),
                         0
                 );
 
@@ -973,7 +977,7 @@ public class Main {
 
 
         System.out.println(
-                "Server started: http://localhost:8082"
+                "Server started on port: " + port
         );
     }
 }
